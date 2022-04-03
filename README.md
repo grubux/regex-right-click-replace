@@ -1,7 +1,7 @@
 # Regex Right Click Replace
 
 this is an open source Chrome extension i've created for finding and replacing easily any character, modifiyng them to PascalCase, uppercase or lowercase.
-It modifies the DOM and saves your preferenced settings in the local storage.
+It modifies the DOM and saves your settings in the local storage.
 
 Stack: JS, React and MUI
 

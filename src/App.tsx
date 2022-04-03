@@ -1,4 +1,3 @@
-import { sensitiveHeaders } from "http2";
 import React, { useState, useEffect } from "react";
 import "./App.css";
 
@@ -8,7 +7,6 @@ import "./App.css";
 
 function App() {
   const [find, setFind] = useState("");
-  const [sent, setSent] = useState(false);
   const [replace, setReplace] = useState("");
   const [pascalCase, setPascalCase] = useState(false);
 
@@ -47,7 +45,6 @@ function App() {
         pascalCase,
       },
     });
-    setSent(true);
   };
 
   return (
@@ -64,20 +61,34 @@ function App() {
             justifyContent: "space-around",
           }}
         >
-          <input
-            style={{ height: "40px", textAlign: "center" }}
-            type="text"
-            placeholder="find"
-            value={find}
-            onChange={handleFind}
-          />
-          <input
-            style={{ height: "40px", textAlign: "center" }}
-            type="text"
-            placeholder="replace"
-            value={replace}
-            onChange={handleReplace}
-          />
+          <div>
+            <div style={{ fontSize: "12px" }}>find</div>
+            <input
+              style={{
+                height: "15%",
+                textAlign: "center",
+                borderRadius: "5px",
+              }}
+              type="text"
+              placeholder="find"
+              value={find}
+              onChange={handleFind}
+            />
+          </div>
+          <div>
+            <div style={{ fontSize: "12px" }}>replace</div>
+            <input
+              style={{
+                height: "15%",
+                textAlign: "center",
+                borderRadius: "5px",
+              }}
+              type="text"
+              placeholder="replace"
+              value={replace}
+              onChange={handleReplace}
+            />
+          </div>
           <div>
             PascalCase
             <input
@@ -87,7 +98,12 @@ function App() {
               onChange={handlePascalCase}
             />
           </div>
-          <button onClick={handleSent}>Save</button>
+          <button
+            style={{ borderRadius: "5px", height: "40px", margin: "10px" }}
+            onClick={handleSent}
+          >
+            Save
+          </button>
         </div>
       </header>
     </div>

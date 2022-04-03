@@ -1,7 +1,7 @@
 /*global chrome */
 const contextMenuItem = {
   id: "tutorial01",
-  title: "My Chrome context menu 👆" /* what appears in the menu */,
+  title: "Regex replace" /* what appears in the menu */,
   contexts: [
     "page",
     "selection",

@@ -1,46 +1,34 @@
-# Getting Started with Create React App
+# Regex Right Click Replace
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+this is an open source Chrome extension i've created for finding and replacing easily any character, modifiyng them to PascalCase, uppercase or lowercase.
+It modifies the DOM and saves your preferenced settings in the local storage.
 
-## Available Scripts
+Stack: JS, React and MUI
 
-In the project directory, you can run:
+# Commands to make it work
 
-### `npm start`
+### `yarn` or `npm i`
+### `yarn build` or `npm run build`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Go to `chrome://extensions/`
+- Activate "Developer mode"
+- Select "Load unpacked"
+- ![image](https://user-images.githubusercontent.com/67732178/161453662-8896c8f1-9f37-4f06-bcae-e487679b25b0.png)
+- Choose the build folder in the popup
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+You can now see the "Regex Right Click Replace" extension
+![image](https://user-images.githubusercontent.com/67732178/161453779-ef307431-4454-43d9-bf18-3f4f2a5e7539.png)
 
-### `npm test`
+Click the puzzle at the top right of the Chrome browser and pin the extension.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+Choose your options
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![Screenshot from 2022-04-04 01-41-03](https://user-images.githubusercontent.com/67732178/161453996-2cc8d877-def2-4160-84a5-d33e353480b6.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Click the save button
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Go to any website input, write some text, highlight it it then right click --> Regex Replace in the context menu.
+Done !
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Feel free to contribute if you think there should be more features in this extension !

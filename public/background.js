@@ -14,13 +14,13 @@ const re = /([a-zA-Z0-9-]+)+/g;
 
 const getStoragePlusDomModifications = (selection) => {
   chrome.storage.local.get(
-    ["regexFind", "regexReplace", "regexPascalCase"],
+    ["regexFind", "regexReplace", "regexCase"],
     function (result) {
       domModifications(
         selection,
         result.regexFind,
         result.regexReplace,
-        result.regexPascalCase
+        result.regexCase
       );
 
       console.log("localstorage res: ", result);
@@ -28,62 +28,55 @@ const getStoragePlusDomModifications = (selection) => {
   );
 };
 
-const domModifications = (
-  selection,
-  regexFind,
-  regexReplace,
-  regexPascalCase
-) => {
+const domModifications = (selection, regexFind, regexReplace, regexCase) => {
   const find = new RegExp(regexFind, "g");
-  console.log("props: ", selection, regexFind, regexReplace, regexPascalCase);
+  console.log("props: ", selection, regexFind, regexReplace, regexCase);
   const regexReplaced = selection.replace(find, regexReplace);
 
   const pascalCase = regexReplaced.replace(re, function (x) {
     return x.charAt(0).toUpperCase() + x.slice(1);
   });
-  console.log("pascalCaseActivated", regexPascalCase);
-  console.log("here", pascalCase, regexReplaced);
-  // return regexPascalCase ? pascalCase : regexReplaced;
-  const toInject = regexPascalCase ? pascalCase : regexReplaced;
+
+  const upperCase = regexReplaced.toUpperCase();
+
+  const lowerCase = regexReplaced.toLowerCase();
+
+  console.log("case in bcg: ", regexCase);
+  console.log("regexReplaced: ", regexCase, regexReplaced);
+  const toInject =
+    regexCase === "uppercase"
+      ? upperCase
+      : regexCase === "lowercase"
+      ? lowerCase
+      : regexCase === "pascalcase"
+      ? pascalCase
+      : regexCase === "none" && regexReplaced;
   chrome.tabs.executeScript({
     code: `document.execCommand('insertText', false, '${toInject}')`,
   });
 };
 
 chrome.contextMenus.onClicked.addListener(async function (itemData) {
-  // console.log("x", getStoragePlusDomModifications(itemData.selectionText));
   console.log("itemData.selectionText", itemData.selectionText);
   getStoragePlusDomModifications(itemData.selectionText);
-
-  // console.log("toInject: ", toInject);
 });
-// await chrome.storage.sync.get(
-//   { pascalCase: defaultValue },
-//   function (result) {
-//     console.log(result.pascalCase);
-//     if (!result) {
-//     }
 
 const setStorage = async (data) => {
   await chrome.storage.local.set(
     {
       regexFind: data.find,
       regexReplace: data.replace,
-      regexPascalCase: data.pascalCase,
+      regexCase: data.whichCase,
     },
     function () {
-      console.log("Value is set to " + data.find);
+      console.log("Value is set to " + data.whichCase);
       console.log({
         regexFind: data.find,
         regexReplace: data.replace,
-        regexPascalCase: data.pascalCase,
+        regexCase: data.whichCase,
       });
     }
   );
-};
-
-const sendValues = (sendRes) => {
-  chrome.storage.local.get(["regexFind"], function (result) {});
 };
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
@@ -94,7 +87,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
     if (request.msg === "get values") {
       chrome.storage.local.get(
-        ["regexFind", "regexReplace", "regexPascalCase"],
+        ["regexFind", "regexReplace", "regexCase"],
         function (result) {
           console.log("resu: ", result);
           sendResponse({ msg: "received value", data: result });

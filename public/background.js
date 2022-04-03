@@ -34,8 +34,9 @@ const domModifications = (
   regexReplace,
   regexPascalCase
 ) => {
+  const find = new RegExp(regexFind, "g");
   console.log("props: ", selection, regexFind, regexReplace, regexPascalCase);
-  const regexReplaced = selection.replace(regexFind, regexReplace);
+  const regexReplaced = selection.replace(find, regexReplace);
 
   const pascalCase = regexReplaced.replace(re, function (x) {
     return x.charAt(0).toUpperCase() + x.slice(1);
